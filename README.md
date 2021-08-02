@@ -127,27 +127,164 @@ Common **Content-Type** include:
 - `application/javascript` - JavaScript code
 - `application/json` - JSON data
 
-## Asynchronous programming
-### Asynchronous?
-Normally, a given program's code runs straight along, with only one thing happening at once. If a function relies on the result of another function, it has to wait for the other function to finish and return, and until that happens, the entire program is essentially stopped from the perspective of the user.
+## Fetch API
+The Fetch API is a modern interface that allows you to make HTTP requests to servers from web browsers. In addition, the Fetch API is much simpler and cleaner. It uses the **Promise** (will be discussed next) to deliver more flexible features to make requests to servers from the web browsers. The `fetch()` method is available in the global scope that instructs the web browsers to send a request to a URL.
 
-Mac users, for example, sometimes experience this as the spinning rainbow-colored cursor (or "beachball" as it is often called). This cursor is how the operating system says "the current program you're using has had to stop and wait for something to finish up, and it's taking so long that I was worried you'd wonder what was going on."
+### Sending a Request
+The `fetch()` requires only one parameter which is the URL of the resource that you want to fetch:
+```js
+let response = fetch(url);
+```
+The `fetch()` method returns a `Promise` so you can use the `then()` and `catch()` methods to handle it:
+```js
+fetch(url)
+    .then(response => {
+        // handle the response
+    })
+    .catch(error => {
+        // handle the error
+    });
+```
+When the request completes, the resource is available. At this time, the promise will resolve into a `Response` object.
 
-<img alt="Multi-colored macOS beachball busy spinner" style="float: left" src="images/beachball.jpg">
-This is a frustrating experience and isn't a good use of computer processing power — especially in an era in which computers have multiple processor cores available. There's no sense sitting there waiting for something when you could let the other task chug along on another processor core and let you know when it's done. This lets you get other work done in the meantime, which is the basis of asynchronous programming. It is up to the programming environment you are using (web browsers, in the case of web development) to provide you with APIs that allow you to run such tasks asynchronously.
+The `Response` object is the API wrapper for the fetched resource. The `Response` object has a number of useful properties and methods to inspect the response.
 
-<h3 style="float: none"> Blocking code</h3>
-Asynchronous techniques are very useful, particularly in web programming. When a web app runs in a browser and it executes an intensive chunk of code without returning control to the browser, the browser can appear to be frozen. This is called blocking; the browser is blocked from continuing to handle user input and perform other tasks until the web app returns control of the processor.
+### Reading the Response
+If the contents of the response are in the `json` format, you can use the `json()` method. The `json()` method returns a Promise that resolves with the complete contents of the fetched resource:
+```js
+fetch(url)
+    .then(response => response.json())
+    .then(data => console.log(data));
+```
+In practice, you often use the `async/await` with the `fetch()` method like this:
+```js
+async function fetchData() {
+    let response = await fetch(url);
+    let data = await response.json();
+    console.log(data);
+}
+```
 
-Let's look at a couple of examples that show what we mean by blocking.
+### Promises
+`fetch()` is an asynchronous function. What this function returns is a **Promise** object. This kind of object has three possible states: **pending**, **fullfilled** and **rejected**. It always starts off as pending and then it either resolves or rejects. Once a promise resolves it runs the `then` method. This method takes a callback function as an argument and passes the resolved value to it. Take a look:
+```js
+const url = 'https://randomfox.ca/floof/'
 
+fetch(url).then(response => {
+  console.log(response)
+})
+```
 
->Postman
-Fetch API
-Promises
-Callbacks
-async await
-Error Handling (try.. catch)
-Consuming 3rd Party APIs
-Default parameters
-Destructuring
+#### Chaining multiple then
+`then`, just like the asynchronous function that we originally called, `fetch`, also returns a `Promise`. What it really means is that we can chain as many thens as we want. If we return a value from the callback passed to `then`, the `Promise` returned by the then method will resolve with the callback’s return value. That value will be passed to the callback function of the next `then`. This might sound complicated but it really isn’t:
+```js
+const url = 'https://randomfox.ca/floof/'
+
+fetch(url)
+    .then(response => {
+        return response.json()
+    })
+    .then(parsedResponse => {
+        console.log(parsedResponse)
+    })
+```
+
+We call the API and it returns a json string. When that happens, in the then callback, we pass that response to the next `then`, converting it to a JavaScript object, using the `.json` method. There we can log the returned value.
+
+#### Promise.catch
+When an error occurs, `Promise` rejects and runs the `catch` method. Inside of this method we can handle the error. `catch` accepts a callback and passes the reason of rejection to it. We can chain a `catch` method with a `then` like this:
+```js
+const url = 'https://randomfox.ca/floof/aaaa'
+
+fetch(url)
+    .then(response => {
+        return response.json()
+    })
+    .then(parsedResponse => {
+        console.log(parsedResponse.image)
+    })
+    .catch(reason => {
+        console.log(reason.toString())
+    })
+```
+
+We added catch at the end so that if anything goes wrong inside fetch or any of the attached thens, the `catch` at the end will handle it. `catch` returns a `Promise` just like `then`. I changed the url to an invalid one so you can see that the `catch` block works.
+
+As you can see, our code grows from top to bottom instead of getting deeply nested. That way it’s more readable than nested callback functions.
+
+We can shorten our code like this if we want:
+```js
+const url = 'https://randomfox.ca/floof/aaaa'
+
+fetch(url)
+    .then(response => response.json())
+    .then(parsed => console.log(parsed.image))
+    .catch(reason => console.log(reason.toString()))
+```
+
+Note that you can also pass the error handling function as the second argument to `then` instead of adding a `catch` block:
+```js
+fetch(url).then(handleSuccess, handleFailure)
+```
+
+### Async await
+We can simplify our code using the ES7 async await syntax. It is simply a new way of handling Promises.
+```js
+async function getFox() {
+    const url = 'https://randomfox.ca/floof/'
+    const res = await fetch(url)
+    const jsonRes = await res.json()
+    console.log(jsonRes.image)
+}
+
+getFox()
+```
+
+We use the `async` keyword in front of our function to declare an asynchronous function. In such function we can use the `await` keyword. We use it anytime we would use `.then`. Such expression pauses the execution of the function and returns the Promise’s value once it resolves.
+
+Async functions return promises. That means we can use `then` on them:
+```js
+async function getFox() {
+    const url = 'https://randomfox.ca/floof/'
+    const res = await fetch(url)
+    const jsonRes = await res.json()
+    return jsonRes
+}
+
+getFox().then(fox => console.log(fox.image))
+```
+
+#### Async await error handling
+Just like we did with `then`, we can also add a `catch`:
+```js
+async function getFox() {
+    const url = 'https://aaa'
+    const res = await fetch(url)
+    const jsonRes = await res.json()
+    return jsonRes
+}
+
+getFox()
+    .then(fox => console.log(fox.image))
+    .catch(reason => console.log(reason.toString()))
+```
+
+But we can also use `try…catch`:
+```js
+async function getFox() {
+    try {
+        const url = 'https://aaa'
+        const res = await fetch(url)
+        const jsonRes = await res.json()
+        return jsonRes
+    } catch(e) {
+        console.log(e.toString())
+    }
+}
+
+getFox()
+    .then(fox => console.log(fox.image))
+```
+
+If anything in the `try` block goes wrong, control jumps to `catch` and passes the reason of rejection to it. Note that **it will catch errors in asynchronous actions only if the `await` keyword is present in front**. Otherwise the error will slip by.
+
