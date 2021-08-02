@@ -288,3 +288,193 @@ getFox()
 
 If anything in the `try` block goes wrong, control jumps to `catch` and passes the reason of rejection to it. Note that **it will catch errors in asynchronous actions only if the `await` keyword is present in front**. Otherwise the error will slip by.
 
+## Destructuring
+Destructuring is a convenient way of extracting multiple values from data stored in (possibly nested) objects and arrays.
+
+It can be used in locations that receive data and the way to extract the values is specified via destructuring patterns.
+
+### Object Destructuring
+
+Before ES6 we had to capture the values individually using dot notation and store them in variables.
+
+With ES6 we can capture the values in an easier way using a destructuring pattern to save the values in variables.
+
+```js
+const person = {
+  firstName: "Jane",
+  lastName: "Doe",
+};
+
+// ES5 Way
+const firstName = person.firstName;
+const lastName = person.lastName;
+
+console.log(firstName); // Jane
+console.log(lastName); // Doe
+
+// ES6 Way
+const { firstName, lastName } = person;
+
+console.log(firstName); // Jane
+console.log(lastName); // Doe
+```
+
+### Default Values
+
+If the property don’t exist on the object we can provide a default value which will be used when the property is `undefined`.
+
+```js
+const person = { firstName: "Jane" };
+
+// ES5 Way
+const lastName = person.lastName || "Doe";
+console.log(lastName); // Doe
+
+// ES6 Way
+const { firstName, lastName = "Doe" } = person;
+console.log(lastName); // Doe
+```
+
+### Array Destructuring
+Destructuring can also be used to capture data from arrays and, in the same way as with objects, we can provide default values.
+
+```js
+// we can skip elements with an empty comma
+// the `last` item has a default value
+let [zero, , , third, , , last = "Empty"] = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+];
+
+console.log(zero); // Monday
+console.log(third); // Thursday
+console.log(last); // Empty
+```
+
+### ...rest Operator
+
+We can use the `...rest` operator to capture individual values in variables and all the other variables in an array.
+
+It can also be used in functions to capture the parameters.
+
+```js
+const [x, ...y] = ["a", "b", "c"];
+console.log(x); // x = 'a';
+console.log(y); // y = ['b', 'c']
+
+// also works with function parameters
+function args(a, b, ...rest) {
+  console.log(a); // 1
+  console.log(b); // 2
+  console.log(rest); // [3, 4, 5, 6, 7]
+}
+
+args(1, 2, 3, 4, 5, 6, 7);
+```
+
+### Practical Uses Of Destructuring #1
+
+```js
+// Destructure function parameters
+function removeBreakpoint({ url, line, column }) {
+  console.log(url); // => "the-url"
+  console.log(line); // => 33
+  console.log(column); // => 60
+}
+
+let options = {
+  url: "the-url",
+  line: 33,
+  column: 60,
+};
+
+removeBreakpoint(options);
+
+function returnMultipleValues() {
+  return {
+    foo: 1,
+    bar: 2,
+  };
+}
+
+// Destructure the returned value of a function
+const { foo, bar } = returnMultipleValues();
+
+console.log(foo); // => 1
+console.log(bar); // => 2
+```
+
+### Practical Uses Of Destructuring #2
+
+```js
+function weekDays() {
+  return ["Monday", "Tuesday", "Wednesday"];
+}
+
+// Destructure the returned value of a function
+const [monday, ...otherDays] = weekDays();
+
+console.log(monday); // => Monday
+console.log(otherDays); // => ["Tuesday", "Wednesday"]
+```
+
+## Default Parameters
+
+Pre `ES6`, setting a default value to one of the parameters of a function was pretty verbose and long to write.
+
+```js
+function compute(num, times) {
+  if (num === undefined) {
+    num = 1;
+  }
+  if (times === undefined) {
+    times = 1;
+  }
+
+  return num * times;
+}
+
+let num1 = compute();
+console.log(num1); // => 1
+
+let num2 = compute(2);
+console.log(num2); // => 2
+
+let num3 = compute(2, 2);
+console.log(num3); // => 4
+```
+
+In `ES6`, now it is much easier to set a default value to the parameters of a function if we don’t provide an argument for each parameter.
+
+```js
+// Now it is much easier to set a default value
+function compute(num = 1, times = 1) {
+  return num * times;
+}
+
+let num1 = compute();
+console.log(num1); // => 1
+
+let num2 = compute(2);
+console.log(num2); // => 2
+
+let num3 = compute(2, 2);
+console.log(num3); // => 4
+```
+
+Passing `undefined` as an argument will trigger the parameter to take the default value.
+
+```js
+function compute(num = 1, times = 1) {
+  return num * times;
+}
+
+let num1 = compute(undefined, 20);
+console.log(num1); // => 20
+
+let num2 = compute(undefined, undefined);
+console.log(num2); // => 1
+```
