@@ -10,6 +10,17 @@
 - [HTTP Responses](#http-responses)
 - [How APIs Build on HTTP](#how-apis-build-on-http)
 - [How Data Formats Are Used In HTTP](#how-data-formats-are-used-in-http)
+- **[Fetch API](#fetch-api)**
+- [Sending a Request](#sending-a-request)
+- [Reading the Response](#reading-the-response)
+- [Promises](#promises)
+- [Async await](#async-await)
+- **[Destructuring](#destructuring)**
+- [Object Destructuring](#object-destructuring)
+- [Array Destructuring](#array-destructuring)
+- [Rest Operator](#rest-operator)
+- [Practical Uses Of Destructuring](#practical-uses-of-destructuring-1)
+- **[Default Parameters](#default-parameters)**
 
 
 ## Protocols
