@@ -494,6 +494,8 @@ console.log(num2); // => 1
 ## Pokedex
 In Pokemon lore, the Pokedex is a Pokemon dictionary that the characters carry with them. In this device, they can query the Pokemons and learn details about them, such as, abilities, type of Pokemon, strengths and weaknesses. The different designs of the Pokedex can be found online. Students are encouraged to take examples online and implement them. Here is a sample UI of Pokedex.
 
+#### Click here -> [API Docs](https://pokeapi.co/docs/v2)
+
 ### WireFrames
 #### Home
 ![](images/pokedex%20home.png)
