@@ -21,6 +21,7 @@
 - [Rest Operator](#rest-operator)
 - [Practical Uses Of Destructuring](#practical-uses-of-destructuring-1)
 - **[Default Parameters](#default-parameters)**
+- [Pokedex Project](#pokedex)
 
 
 ## Protocols
@@ -489,3 +490,33 @@ console.log(num1); // => 20
 let num2 = compute(undefined, undefined);
 console.log(num2); // => 1
 ```
+
+## Pokedex
+In Pokemon lore, the Pokedex is a Pokemon dictionary that the characters carry with them. In this device, they can query the Pokemons and learn details about them, such as, abilities, type of Pokemon, strengths and weaknesses. The different designs of the Pokedex can be found online. Students are encouraged to take examples online and implement them. Here is a sample UI of Pokedex.
+
+### WireFrames
+#### Home
+![](images/pokedex%20home.png)
+
+#### Search
+![](images/pokedex%20search.png)
+
+#### Cards
+![](images/pokedex%20card.png)
+
+![](images/pokedex%20card%202.png)
+
+### Requirements
+1. Develop a search field where users will search for Pokemon’s name or id.
+   - Create a field and button. 
+   - Add a callback to the button event listener.
+2. Make a request by Pokemon ID or name. PokeApi already can handle both.
+   - There are some Pokemons that don’t exist but should, 999 doesn’t exist but 1000 does.
+   - This is a perfect example of interacting with the response’s status code and adjusting their app to it.
+   - The default param of the fetch function is a GET method.
+3. Display important information on the Pokemons. All this information is available on the first REST call to the API.
+   - Name (Bulbasaur, Charizard, Pikachu)
+   - Skills (Lighting-rod, static)
+   - Type of Pokemon (Ghost, Poison, Fire)
+   - Pokemon Sprites
+
