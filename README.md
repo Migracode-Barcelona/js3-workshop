@@ -1,7 +1,7 @@
 # JavaScript-Module-3-Workshop
 
 ## Getting started
-* Fork and Clone this repo.
+Fork and Clone this repo.
 ## Table of contents
 **[WEEK 1](#week-1)**
 - **[Protocols](#protocols)**
@@ -16,18 +16,25 @@
 - [Reading the Response](#reading-the-response)
 - [Promises](#promises)
 - [Async await](#async-await)
+- **[Pokedex Project](#pokedex)**
+
+**[WEEK 2](#week-2)**
 - **[Destructuring](#destructuring)**
 - [Object Destructuring](#object-destructuring)
 - [Array Destructuring](#array-destructuring)
 - [Rest Operator](#rest-operator)
 - [Practical Uses Of Destructuring](#practical-uses-of-destructuring-1)
 - **[Default Parameters](#default-parameters)**
-- [Pokedex Project](#pokedex)
-  
-**[WEEK 2](#week-2)**
+- [Exercises](#exercises)
+- **[ES 6 Modules](#modules)**
+- **[NPM](#npm)**
+- **[Webpack](#webpack)**
+- **[Babel](#babel)**
 
-<br/>
-<hr/>
+**[WEEK 3](#week-3)**
+- [Test Driven Development](#tdd---test-driven-development)
+- [Unit Testing](#unit-testing)
+- [Jest](#jest)
 
 # Week 1
 ## Protocols
@@ -306,6 +313,45 @@ getFox()
 
 If anything in the `try` block goes wrong, control jumps to `catch` and passes the reason of rejection to it. Note that **it will catch errors in asynchronous actions only if the `await` keyword is present in front**. Otherwise the error will slip by.
 
+## Pokedex
+In Pokemon lore, the Pokedex is a Pokemon dictionary that the characters carry with them. In this device, they can query the Pokemons and learn details about them, such as, abilities, type of Pokemon, strengths and weaknesses. The different designs of the Pokedex can be found online. Students are encouraged to take examples online and implement them. Here is a sample UI of Pokedex.
+
+#### Click here -> [API Docs](https://pokeapi.co/docs/v2)
+
+### WireFrames
+### Home
+<br/>
+
+![](images/pokedex%20home.png)
+
+### Search
+<br/>
+
+![](images/pokedex%20search.png)
+
+### Cards
+<br/>
+
+![](images/pokedex%20card.png)
+
+![](images/pokedex%20card%202.png)
+
+### Requirements
+1. Develop a search field where users will search for Pokemon’s name or id.
+   - Create a field and button. 
+   - Add a callback to the button event listener.
+2. Make a request by Pokemon ID or name. PokeApi already can handle both.
+   - There are some Pokemons that don’t exist but should, 999 doesn’t exist but 1000 does.
+   - This is a perfect example of interacting with the response’s status code and adjusting their app to it.
+   - The default param of the fetch function is a GET method.
+3. Display important information on the Pokemons. All this information is available on the first REST call to the API.
+   - Name (Bulbasaur, Charizard, Pikachu)
+   - Skills (Lighting-rod, static)
+   - Type of Pokemon (Ghost, Poison, Fire)
+   - Pokemon Sprites
+
+# Week 2
+
 ## Destructuring
 Destructuring is a convenient way of extracting multiple values from data stored in (possibly nested) objects and arrays.
 
@@ -497,38 +543,10 @@ let num2 = compute(undefined, undefined);
 console.log(num2); // => 1
 ```
 
-## Pokedex
-In Pokemon lore, the Pokedex is a Pokemon dictionary that the characters carry with them. In this device, they can query the Pokemons and learn details about them, such as, abilities, type of Pokemon, strengths and weaknesses. The different designs of the Pokedex can be found online. Students are encouraged to take examples online and implement them. Here is a sample UI of Pokedex.
+## Exercises
+##### Complete exercises 1 - 6
 
-#### Click here -> [API Docs](https://pokeapi.co/docs/v2)
+Open folder `ES 6 and beyond` and follow the instructions in the *README.md* file.
 
-### WireFrames
-#### Home
-![](images/pokedex%20home.png)
-
-#### Search
-![](images/pokedex%20search.png)
-
-#### Cards
-![](images/pokedex%20card.png)
-
-![](images/pokedex%20card%202.png)
-
-### Requirements
-1. Develop a search field where users will search for Pokemon’s name or id.
-   - Create a field and button. 
-   - Add a callback to the button event listener.
-2. Make a request by Pokemon ID or name. PokeApi already can handle both.
-   - There are some Pokemons that don’t exist but should, 999 doesn’t exist but 1000 does.
-   - This is a perfect example of interacting with the response’s status code and adjusting their app to it.
-   - The default param of the fetch function is a GET method.
-3. Display important information on the Pokemons. All this information is available on the first REST call to the API.
-   - Name (Bulbasaur, Charizard, Pikachu)
-   - Skills (Lighting-rod, static)
-   - Type of Pokemon (Ghost, Poison, Fire)
-   - Pokemon Sprites
-
-<br/>
-<hr/>
-
-# Week 2
+# Week 3
+## TDD - Test Driven Development
