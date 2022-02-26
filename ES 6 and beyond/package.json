@@ -1,0 +1,22 @@
+{
+    "name": "es6-and-beyond",
+    "version": "1.0.0",
+    "description": "es6-and-beyond",
+    "keywords": [],
+    "author": "Yogi",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "dependencies": {
+        "@babel/core": "^7.11.1",
+        "@babel/preset-env": "^7.11.0",
+        "@types/jest": "^26.0.9",
+        "babel-jest": "^26.2.2",
+        "jest": "^26.2.2"
+    },
+    "devDependencies": {
+        "babel-eslint": "^10.0.3",
+        "eslint": "^8.10.0"
+    }
+}

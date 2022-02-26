@@ -1,8 +1,9 @@
-# JavaScript-Module-3-Pokedex-Workshop
+# JavaScript-Module-3-Workshop
 
 ## Getting started
 * Fork and Clone this repo.
 ## Table of contents
+**[WEEK 1](#week-1)**
 - **[Protocols](#protocols)**
 - [Knowing the Rules](#knowing-the-rules)
 - [The Protocol of the Web](#the-protocol-of-the-web)
@@ -22,8 +23,13 @@
 - [Practical Uses Of Destructuring](#practical-uses-of-destructuring-1)
 - **[Default Parameters](#default-parameters)**
 - [Pokedex Project](#pokedex)
+  
+**[WEEK 2](#week-2)**
 
+<br/>
+<hr/>
 
+# Week 1
 ## Protocols
 In JavaScript Module II, we got our bearings by forming a picture of the two sides involved in an API, the server and the client. With a solid grasp on the who, we are ready to look deeper into how these two communicate. For context, we first look at the human model of communication and compare it to computers. After that, we move on to the specifics of a common protocol used in APIs.
 
@@ -522,3 +528,7 @@ In Pokemon lore, the Pokedex is a Pokemon dictionary that the characters carry w
    - Type of Pokemon (Ghost, Poison, Fire)
    - Pokemon Sprites
 
+<br/>
+<hr/>
+
+# Week 2
