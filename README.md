@@ -1,8 +1,9 @@
-# JavaScript-Module-3-Pokedex-Workshop
+# JavaScript-Module-3-Workshop
 
 ## Getting started
-* Fork and Clone this repo.
+Fork and Clone this repo.
 ## Table of contents
+**[WEEK 1](#week-1)**
 - **[Protocols](#protocols)**
 - [Knowing the Rules](#knowing-the-rules)
 - [The Protocol of the Web](#the-protocol-of-the-web)
@@ -15,15 +16,34 @@
 - [Reading the Response](#reading-the-response)
 - [Promises](#promises)
 - [Async await](#async-await)
+- **[Pokedex Project](#pokedex)**
+
+**[WEEK 2](#week-2)**
 - **[Destructuring](#destructuring)**
 - [Object Destructuring](#object-destructuring)
 - [Array Destructuring](#array-destructuring)
 - [Rest Operator](#rest-operator)
 - [Practical Uses Of Destructuring](#practical-uses-of-destructuring-1)
 - **[Default Parameters](#default-parameters)**
-- [Pokedex Project](#pokedex)
+- [Exercises](#exercises)
+- **[ES 6 Modules](#modules)** TBA
+- **[NPM](#npm)** TBA
+- **[Webpack](#webpack)** TBA
+- **[Babel](#babel)** TBA
 
+**[WEEK 3](#week-3)**
+- **[Test Driven Development](#tdd-test-driven-development)**
+- [What is Jest](#what-is-jest)
+- [Jest Installation](#jest-installation)
+- [Using Jest In A Node-based Project](#using-jest-in-a-node-based-project)
+- [Writing tests for a javascript function](#writing-tests-for-a-javascript-function)
+- [Jest Matchers](#jest-matchers)
+- [Testing Async Code](#testing-async-code)
+- [Testing Promises](#testing-promises)
+- [Setup and Teardown](#setup-and-teardown)
+- [Tips & Tricks](#tips-tricks)
 
+# Week 1
 ## Protocols
 In JavaScript Module II, we got our bearings by forming a picture of the two sides involved in an API, the server and the client. With a solid grasp on the who, we are ready to look deeper into how these two communicate. For context, we first look at the human model of communication and compare it to computers. After that, we move on to the specifics of a common protocol used in APIs.
 
@@ -300,6 +320,45 @@ getFox()
 
 If anything in the `try` block goes wrong, control jumps to `catch` and passes the reason of rejection to it. Note that **it will catch errors in asynchronous actions only if the `await` keyword is present in front**. Otherwise the error will slip by.
 
+## Pokedex
+In Pokemon lore, the Pokedex is a Pokemon dictionary that the characters carry with them. In this device, they can query the Pokemons and learn details about them, such as, abilities, type of Pokemon, strengths and weaknesses. The different designs of the Pokedex can be found online. Students are encouraged to take examples online and implement them. Here is a sample UI of Pokedex.
+
+#### Click here -> [API Docs](https://pokeapi.co/docs/v2)
+
+### WireFrames
+### Home
+<br/>
+
+![](images/pokedex%20home.png)
+
+### Search
+<br/>
+
+![](images/pokedex%20search.png)
+
+### Cards
+<br/>
+
+![](images/pokedex%20card.png)
+
+![](images/pokedex%20card%202.png)
+
+### Requirements
+1. Develop a search field where users will search for Pokemon’s name or id.
+   - Create a field and button. 
+   - Add a callback to the button event listener.
+2. Make a request by Pokemon ID or name. PokeApi already can handle both.
+   - There are some Pokemons that don’t exist but should, 999 doesn’t exist but 1000 does.
+   - This is a perfect example of interacting with the response’s status code and adjusting their app to it.
+   - The default param of the fetch function is a GET method.
+3. Display important information on the Pokemons. All this information is available on the first REST call to the API.
+   - Name (Bulbasaur, Charizard, Pikachu)
+   - Skills (Lighting-rod, static)
+   - Type of Pokemon (Ghost, Poison, Fire)
+   - Pokemon Sprites
+
+# Week 2
+
 ## Destructuring
 Destructuring is a convenient way of extracting multiple values from data stored in (possibly nested) objects and arrays.
 
@@ -491,34 +550,596 @@ let num2 = compute(undefined, undefined);
 console.log(num2); // => 1
 ```
 
-## Pokedex
-In Pokemon lore, the Pokedex is a Pokemon dictionary that the characters carry with them. In this device, they can query the Pokemons and learn details about them, such as, abilities, type of Pokemon, strengths and weaknesses. The different designs of the Pokedex can be found online. Students are encouraged to take examples online and implement them. Here is a sample UI of Pokedex.
+## Exercises
+##### Complete exercises 1 - 6
 
-#### Click here -> [API Docs](https://pokeapi.co/docs/v2)
+Open folder `ES 6 and beyond` and follow the instructions in the *README.md* file.
 
-### WireFrames
-#### Home
-![](images/pokedex%20home.png)
+# Week 3
+## TDD - Test Driven Development
 
-#### Search
-![](images/pokedex%20search.png)
+### What is Test Driven Development (TDD)?
+Test Driven Development (TDD) is a software development practice that focuses on creating unit test cases before developing the actual code. It is an iterative approach that combines programming, the creation of unit tests, and refactoring.
 
-#### Cards
-![](images/pokedex%20card.png)
+The TDD approach derives its roots from the Agile manifesto principles and Extreme programming. As the name suggests, the test process drives software development. Moreover, it’s a structuring practice that enables developers and testers to obtain optimized code that proves to be resilient in the long term.
 
-![](images/pokedex%20card%202.png)
+In TDD, developers start creating small test cases for every feature based on their initial understanding. The primary intention of this technique is to modify or write new code only if the tests fail. This prevents duplication of test scripts.
 
-### Requirements
-1. Develop a search field where users will search for Pokemon’s name or id.
-   - Create a field and button. 
-   - Add a callback to the button event listener.
-2. Make a request by Pokemon ID or name. PokeApi already can handle both.
-   - There are some Pokemons that don’t exist but should, 999 doesn’t exist but 1000 does.
-   - This is a perfect example of interacting with the response’s status code and adjusting their app to it.
-   - The default param of the fetch function is a GET method.
-3. Display important information on the Pokemons. All this information is available on the first REST call to the API.
-   - Name (Bulbasaur, Charizard, Pikachu)
-   - Skills (Lighting-rod, static)
-   - Type of Pokemon (Ghost, Poison, Fire)
-   - Pokemon Sprites
+### Three phases of Test Driven Development
+1. **Create precise tests**: Developers need to create precise unit tests to verify the functionality of specific features. They must ensure that the test compiles so that it can execute. In most cases, the test is bound to fail. This is a meaningful failure as developers are creating compact tests based on their assumptions of how the feature will behave.
+2. **Correcting the Code**: Once a test fails, developers need to make the minimal changes required to correct the code so that it can run successfully when re-executed.
+3. **Refactor the Code**: Once the test runs successfully, check for redundancy or any possible code optimizations to enhance overall performance. Ensure that refactoring does not affect the external behavior of the program.
 
+The image below represents a high-level TDD approach towards development:
+
+![](images/high-level%20TDD.png)
+
+### Benefits of Test Driven Development (TDD)
+1. Fosters the creation of optimized code.
+2. Helps developers better analyze and understand client requirements and request clarity when they are not adequately defined.
+3. The addition and testing of new functionalities become much easier in the latter stages of development.
+4. Test coverage under TDD is much higher compared to the conventional development models. This is because the TDD focuses on creating tests for each functionality right from the beginning.
+5. Enhances the productivity of the developer and leads to the development of a codebase that is flexible and easy to maintain.
+
+### What is Jest
+Jest is a Javascript Testing framework built by Facebook.
+
+It is primarily designed for React (which is also built by Facebook) based apps but could be used to write automation scenarios for any Javascript-based codebases.
+
+In this Jest testing workshop, we will learn about various features of Jest, its matchers and see how we can use Jest with an end to end example. We will also explore about code coverage using Jest.
+
+### Getting Started With Jest Testing
+Some of the advantages/features of Jest are given below:
+
+1. Zero configuration required.
+2. **Fast**: Jest tests run in parallel – this in turn greatly reduces the test execution time.
+3. **Built-in code coverage**: Jest supports code coverage out of the box – this is a very useful metric for all CI-based delivery pipelines and overall test effectiveness of a project.
+4. **Isolated and sandboxed tests**: Each Jest test runs in its own sandbox, which ensures no two tests can interfere or impact each other.
+5. **Powerful Mocking support**: Jest tests support all types of mocking – be it functional mocking, timer mocking, or mocking individual API calls.
+6. **Support snapshot testing**: Snapshot testing is relevant from the React perspective. Jest supports capturing a snapshot of the react component being tested – this can validate with the component’s actual output. This greatly helps in validating the component’s behavior.
+
+### Jest Framework For JavaScript Unit Testing
+In this section, we will see an end to end example to write tests using the JEST framework for a simple Javascript function. Firstly, let’s see how to install the JEST framework in our project
+
+### Jest Installation
+Jest is simply a node package and can be installed using any node-based package manager. **Example**, npm or yarn.
+
+Let’s see some sample commands that can be used to install Jest package.
+
+```bash
+yarn add --dev jest
+```
+```bash
+npm install --save-dev jest
+```
+For installing the Jest module globally, you can simply use the ‘-g’ flag along with the npm command. This will enable you to use Jest commands directly without configuring the package file for npm tests.
+```bash
+npm install -g jest
+```
+
+### Using Jest In A Node-based Project
+To use Jest in a node-based project, simply use the commands from the above section to install the node package for Jest.
+
+##### Follow the below steps, in order to create a node project from start and then install Jest into it.
+
+1) Create a folder/directory with a name as your project name, for example, myFirstNodeProject
+
+2) Now using the terminal or command line, navigate to the project created in the above step and execute the npm init script using the below command.
+```bash
+npm init
+```
+3) Once the above command is executed, it will prompt for different questions/parameters.
+
+    **For example**, the name of the project, version, etc. Simply keep pressing enter (and accept the default values). Once completed, you will see a package.json file created in your project. This is a mandatory configuration file for any node-based project
+
+4) Now execute the command to install the Jest package into the newly created project using the below command.
+```bash
+npm install --save-dev jest
+```
+
+This will install the Jest module (as well as its dependencies).
+
+5) Now, we have a node project ready with Jest bindings. Let’s configure the npm test script to run the Jest tests i.e. when the command ‘npm test’ is executed, the script should run all the Jest framework based tests.
+
+To do that, update the package.json file and add a script section as shown below.
+```json
+"scripts": {
+  "test": "jest"
+ }
+```
+##### The final package.json file will look as shown below.
+```json
+{
+ "name": "jest-e2e",
+ "version": "1.0.0",
+ "description": "",
+ "main": "index.js",
+ "scripts": {
+   "test": "jest"
+ },
+ "author": "",
+ "license": "ISC",
+ "dependencies": {
+   "jest": "^25.1.0"
+ }
+}
+```
+
+### Writing tests for a javascript function
+In this section, we will create a simple Javascript function code for addition, subtraction, and multiplication of 2 numbers and write the corresponding Jest based tests for it.
+
+First, let’s see how the code for our application (or function) under test looks like.
+
+**1.** In the node project created in the above section, create a js file named calculator.js with contents as shown below
+```js
+const mathOperations = {
+   sum: function(a,b) {
+       return a + b;
+   },
+   
+   diff: function(a,b) {
+       return a - b;
+   },
+   product: function(a,b) {
+       return a * b
+   }
+}
+
+module.exports = mathOperations
+```
+**2.** Now, create a test file in the same folder for these tests, named calculator.test.js – this is the convention expected by the Jest framework to look for all the files that contain Jest based tests. We will also import the function under test, in order to execute the code in the test.
+
+This is how the file would look with just import / require declaration.
+```js
+const mathOperations = require('./calculator');
+```
+**3.** Now, let’s write tests for different methods in the main file i.e. sum, diff, and product.
+
+Jest tests follow BDD style tests, with each test suite having one main describe block and can have multiple test blocks. Also, please note that the tests can have nested describe blocks as well.
+
+Let’s write a test for adding 2 numbers and validate the expected results. We will be supplying the numbers as 1 & 2 and expecting the output as 3.
+```js
+describe("Calculator tests", () => {
+ test('adding 1 + 2 should return 3', () => {
+   expect(mathOperations.sum(1, 2)).toBe(3);
+ });
+})
+```
+##### Please refer to the below points w.r.t the test above:
+
+- The describe block is an outer description for the test suite i.e it represents a generic container for all the tests that we are going to write for the calculator in this file.
+  
+- Next, we have an individual test block – this represents a single test. The string in quotes represents the name of the test. Function `test()` is also aliased as `it()`
+
+- Refer to the code in the expect block – “expect” is nothing but an assertion. The statement is calling the sum method in the function under test with inputs 1 & 2 and expecting the output to be 3.
+
+We can also rewrite this in a simpler way to understand it better.
+
+Please see below, now we have separated the function call and assertion as 2 separate statements to make it more succinct.
+```js
+describe("Calculator tests", () => {
+ test('adding 1 + 2 should return 3', () => {
+   // arrange and act
+   let result = mathOperations.sum(1,2)
+ 
+   // assert
+   expect(result).toBe(3);
+ });
+})
+```
+
+- In order to run this test, simply run the command `npm test` in the terminal or command prompt at the project location.
+
+##### You will see the output as shown below.
+
+![](images/Run-the-command-“npm-test”-in-the-terminal.png)
+
+
+**4.** Let’s try some more tests.
+- First, write a failing test and see what output we get. Let’s just change the result to some incorrect value in the same test that we wrote in the last section. See how the test looks like.
+```js
+describe("Calculator tests", () => {
+ test('adding 1 + 2 should return 10', () => {
+   // arrange and act
+   let result = mathOperations.sum(1,2)
+ 
+   // assert
+   expect(result).toBe(10);
+ });
+})
+```
+Here we are expecting a sum of 1 and 2 to return 10 which is incorrect.
+
+##### Let’s try executing this and see what we get.
+![](images/detailed-output-when-a-test-is-failed.png)
+
+You can see the detailed output when a test is failed i.e. what was actually returned and what was expected and which line caused the error in the function under test etc.
+
+- Let’s write more tests for the other functions i.e difference and product.
+
+The test file with all the tests will look as shown below.
+
+```js
+const mathOperations = require('./calculator');
+ 
+describe("Calculator tests", () => {
+ test('adding 1 + 2 should return 3', () => {
+   // arrange and act
+   let result = mathOperations.sum(1,2)
+ 
+   // assert
+   expect(result).toBe(3);
+ });
+ 
+ test("subtracting 2 from 10 should return 8", () => {
+   // arrange and act
+   let result = mathOperations.diff(10,2)
+ 
+   // assert
+   expect(result).toBe(8);
+ });
+ 
+ test("multiplying 2 and 8 should return 16", () => {
+   // arrange and act
+   let result = mathOperations.product(2,8)
+ 
+   // assert
+   expect(result).toBe(16);
+ });
+})
+```
+
+When the above tests are executed, **the output given below gets generated**.
+
+![](images/Tests-output-for-functions-difference-and-product.png)
+
+### Jest Matchers
+Jest assertions use matchers to assert on a condition. Jest uses matchers from the expect Api. The expect API doc can be referenced [here](https://jestjs.io/docs/expect).
+
+Let’s walk through some of the most commonly used matchers along with Jest tests.
+
+**1. Equality**
+These are the most commonly used matchers. They are used for checking equality or inequality and is mostly used for arithmetic operations.
+
+Let’s see some examples below:
+
+Here we have written 2 matchers using *toBe* and *not.toBe* which are analogous to equals and not equals.
+```js
+test("equality matchers", () => {
+   expect(2*2).toBe(4);
+   expect(4-2).not.toBe(1);
+ })
+```
+
+**2. Truthiness**
+Here we will see, matchers for null, falsy, and truthy i.e. false and truth values. It’s important to note that anything that’s not logically true is falsy.
+
+For example, number 0, null, empty string, NaN are all examples of falsy w.r.t Javascript.
+```js
+test("truthy operators", () => {
+   var name="Software testing help"
+   var n = null
+   expect(n).toBeNull()
+   expect(name).not.toBeNull
+ 
+   // name has a valid value
+   expect(name).toBeTruthy()
+ 
+   //fail - as null is non success
+   expect(n).toBeTruthy()
+   
+   // pass - null treated as false or negative
+   expect(n).toBeFalsy()
+ 
+   // 0 - treated as false
+   expect(0).toBeFalsy()
+ })
+```
+
+**3. Number Matchers**
+These matchers could be used for general arithmetic operations.
+
+For example, greaterThan, lessThan, greaterThanOrEqual, etc.
+
+Check the below examples for more details
+```js
+test("numeric operators", () => {
+ 
+   var num1 = 100;
+   var num2 = -20;
+   var num3 = 0;
+ 
+   // greater than
+   expect(num1).toBeGreaterThan(10)
+ 
+   // less than or equal
+   expect(num2).toBeLessThanOrEqual(0)
+ 
+   // greater than or equal
+   expect(num3).toBeGreaterThanOrEqual(0)
+ })
+```
+
+**4. String Matchers**
+A lot of times we need strings to match a regular expression as an assertion in a Unit test. Jest provides matchers for strings to be matched against a regular expression.
+```js
+test("string matchers",() => {
+   var string1 = "software testing help - a great resource for testers"
+ 
+   // test for success match
+   expect(string1).toMatch(/test/);
+ 
+   // test for failure match
+   expect(string1).not.toMatch(/abc/)
+ })
+```
+**5. Matching Array Values**
+You can use *.toContain()* when you want to check if an array contains an element.
+```js
+test("array contains the element", () => {
+  const numbers = [1, 2, 3, 4];
+
+  expect(numbers).toContain(3);
+});
+```
+
+**6. Arrays That Contain Objects**
+You can use *.toContainEqual()* when you want to check that an item with a specific structure and values is contained in an array. This matcher recursively checks the equality of all fields, rather than checking for object identity.
+```js
+test("array contains the object", () => {
+  const users = [
+    {
+      name: "Alex",
+    },
+    {
+      name: "Ana",
+    },
+    {
+      name: "John",
+    },
+  ];
+
+  expect(users).toContainEqual({
+    name: "John",
+  });
+});
+```
+
+**7. Sub-matching Array Values**
+You can use *.arrayContaining()* when you want to check if an array contains another array, that is, the expected array is a subset of the received array.
+```js
+describe("arrayContaining", () => {
+  it("matches the elements in the array", () => {
+    expect(["Alice", "Bob", "Eve"]).toEqual(
+      expect.arrayContaining(["Alice", "Bob"])
+    );
+  });
+
+  it("does not match", () => {
+    expect(["Bob", "Eve"]).not.toEqual(
+      expect.arrayContaining(["Alice", "Bob"])
+    );
+  });
+});
+```
+
+**8. Sub-matching Objects Properties**
+*expect.objectContaining(object)* matches any received object that recursively matches the expected properties. That is, the expected object is a subset of the received object. Therefore, it matches a received object which contains properties that are present in the expected object.
+```js
+describe("objectContaining", () => {
+  const obj = {
+    lastName: "Mark",
+    age: 25,
+  };
+
+  it("matches elements in the object", () => {
+    expect(obj).toEqual(
+      expect.objectContaining({
+        lastName: "Mark",
+      })
+    );
+  });
+
+  it("does not match", () => {
+    expect(obj).not.toEqual(
+      expect.objectContaining({
+        lastName: "Mark",
+        since: "2018/05/02",
+      })
+    );
+  });
+});
+```
+
+### Testing Async Code
+One of the most common tasks you will have will be to test async code that when it is finished, it executes a callback function that we provide.
+```js
+function someAction(callback) {
+   // perform some async action
+
+   // call the callback when done
+   setTimeout(() => {
+       callback(2);
+   }, 100);
+}
+
+test("someAction returns 1", () => {
+   someAction(function (result) {
+       expect(result).toBe(1);
+   });
+});
+
+// The test passed even if the result is not 1
+PASS  __tests__/t-5.test.js
+  ✓ someAction returns 1 (1 ms)
+```
+#### Testing async code the right way
+In order to fix this issue we need to use the parameter that our test callback function receives from jest (which is usually named done). Now, Jest will wait until the done callback is called before finishing the test and if done() is never called, the test will fail (with timeout error), which is what you want to happen.
+```js
+function someAction(callback) {
+   // perform some async action
+
+   // call the callback when done
+   setTimeout(() => {
+       callback(2);
+   }, 100);
+}
+
+test("someAction returns 1", (done) => {
+   someAction(function (result) {
+       expect(result).toBe(1);
+       // Jest will wait until the done callback is called
+       // before finishing the test
+       done();
+   });
+});
+
+// ✅ Now the test fails because the result is not 1
+ FAIL  __tests__/t-5.test.js
+  ✕ someAction returns 1 (145 ms)
+```
+### Testing Promises
+If your code uses promises, there is a more straightforward way to handle asynchronous tests. Return a promise from your test, and Jest will wait for that promise to resolve. If the promise is rejected, the test will automatically fail.
+```js
+function someAction() {
+  return Promise.resolve({
+    name: "Ana",
+  });
+}
+
+test("someAction returns the user", () => {
+  return someAction().then((user) => {
+    expect(user.name).toBe("John");
+  });
+});
+
+ FAIL  __tests__/t-6.test.js
+ ✕ someAction returns the user (5 ms)
+```
+However, it is important that you return the promise, otherwise Jest will not wait for the promise to settle and it will miss the assertion.
+```js
+function someAction() {
+   return Promise.resolve({
+       name: "Ana",
+   });
+}
+
+test("someAction returns the user", () => {
+   // ❌ The test will not fail
+   someAction().then((user) => {
+       expect(user.name).toBe("John");
+   });
+});
+
+PASS  __tests__/t-6.test.js
+  ✓ someAction returns the user (6 ms)
+```
+#### Testing a Failed Promise
+If you want to test that a promise rejects in some case you can do it the following way.
+```js
+function getUser() {
+   return Promise.reject("Nope");
+}
+
+test("getUser rejects", async () => {
+   return expect(getUser()).rejects.toMatch(/Nope/);
+});
+
+PASS  __tests__/t-6.test.js
+  ✓ getUser rejects (3 ms)
+```
+#### Testing a Failed Promise Using async/await
+If you want to test that a promise rejects in some case you can do it the following way using async/await.
+```js
+function getUser() {
+   return Promise.reject("Nope");
+}
+
+test("getUser rejects", async () => {
+   expect.assertions(1);
+
+   try {
+       await getUser();
+   } catch (error) {
+       expect(error).toMatch(/Nope/);
+   }
+});
+
+PASS  __tests__/t-6.test.js
+  ✓ getUser rejects (2 ms)
+```
+
+### Setup and Teardown
+Often while writing tests you have some setup work that needs to happen before tests run, and you have some finishing work that needs to happen after tests run. Jest provides helper functions to handle this.
+```js
+// #fictional-code
+beforeAll(() => seedDatabase());
+beforeEach(() => findByIdAndDelete(user));
+afterAll(() => clearDatabase());
+
+test("creates a new user", async () => {
+  await db.insertOne();
+});
+
+test("fails to create a duplicate user", async () => {
+  await db.insertOne();
+
+  try {
+    await db.insertOne();
+  } catch ({ message }) {
+    expect(message).toMatch(/Already exists/);
+  }
+});
+```
+- beforeAll - Called once before all the tests
+- beforeEach - Called before each of the tests (before every test function)
+- afterEach - Called after each of the tests (after every test function)
+- afterAll - Called once after all the tests
+
+#### Why?
+Since tests are all ran in parallel, we don’t want ones that are executed before to affect tests that are executed later.
+
+For this reason, the Jest setup functions can be used to clear the state of our app or database such that each test can be executed without any problem and it cannot be affected by other tests.
+
+The same way that we want our code to be resilient, we want our tests to be able to run on their own without being affected by other tests.
+
+### Tips & Tricks
+**1.** The command line reports are good but not very readable. There are libraries/modules available to generate HTML based test reports for Jest tests. It can be achieved as shown below.
+
+Add node package for *jest-html-reporter* using the below command.
+```bash
+npm install --save-dev jest-html-reporter
+```
+Now add Jest configuration for the reporter in the package.json file of the node project.
+```json
+"jest": {
+   "reporters": [
+     "default",
+     [
+       "./node_modules/jest-html-reporter",
+       {
+         "pageTitle": "Test Report"
+       }
+     ]
+   ]
+ }
+```
+Once configured now, execute the tests using the `npm test` command.
+
+If the setup is successful you should be able to see an Html based report getting created in the project directory.
+
+![](images/Test-Report.png)
+
+**2. Creating Code coverage report**: Code coverage is one of the most important metrics from a unit testing perspective. It essentially measures what percentage of statements/branches are covered for the application under test.
+
+Jest provides out of the box support for code coverage. In order to get the Jest coverage report, Jest configuration needs to be added in the package.json file.
+
+Add the configuration as shown below:
+```json
+"jest": {
+     "collectCoverage":true
+   }
+```
+Once this configuration is done, try running the tests using the command `npm test`, and you can see the code coverage details just below the test execution results as shown below.
+
+![](images/code-coverage-details.png)
