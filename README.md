@@ -1,7 +1,5 @@
 # JavaScript-Module-3-Workshop
 
-## Getting started
-Fork and Clone this repo.
 ## Table of contents
 **[WEEK 1](#week-1)**
 - **[Protocols](#protocols)**
