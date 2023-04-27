@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        ".content": true,
+        ".devcontainer": true,
+        ".vscode": true,
+	"codeswing.json": true,
+        ".gitignore": true
+    }
+}

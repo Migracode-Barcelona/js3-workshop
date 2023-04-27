@@ -1,0 +1,25 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+  },
+    "extensions": [
+
+        "dbaeumer.vscode-eslint",
+
+        "esbenp.prettier-vscode",
+
+        "ms-vsliveshare.vsliveshare",
+
+        "formulahendry.code-runner",
+
+        "tinkertrain.theme-panda",
+
+        "codespaces-contrib.codeswing",
+
+        "vsls-contrib.codetour",
+
+        "streetsidesoftware.code-spell-checker"
+
+    ],
+  "postCreateCommand": "mkdir -p $HOME/.config/vscode-dev-containers/ && touch $HOME/.config/vscode-dev-containers/first-run-notice-already-displayed"
+}
