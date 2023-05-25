@@ -860,7 +860,7 @@ export default function(arr) {
 Note that you don’t need to specify the name for the function because the module represents the function name.
 
 ```js
-import sort from sort.js;
+import sort from './sort.js';
 sort([2,1,3]);
 ```
 
