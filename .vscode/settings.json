@@ -1,9 +1,12 @@
 {
     "files.exclude": {
-        ".content": true,
-        ".devcontainer": true,
-        ".vscode": true,
-	"codeswing.json": true,
-        ".gitignore": true
+        "codeswing.json": true,
+        ".*": true,
+        "node_modules": true,
+        "package-lock.json": true,
+        "package.json": true
+    },
+        "workbench.editorAssociations": {   
+        "*.md": "vscode.markdown.preview.editor",
     }
 }
